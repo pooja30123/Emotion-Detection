@@ -1,34 +1,25 @@
 # 🧠 Emotion Detection Web App 😄😢😠😮😐
 
-![Emotion Detection Banner](https://media.giphy.com/media/YQitE4YNQNahy/giphy.gif)
-
 A real-time **Emotion Detection** app built using **Deep Learning** and **Web Technologies**. This project captures images from a webcam and detects emotions like **Happy**, **Sad**, **Angry**, **Surprised**, and **Neutral** using a CNN model.
 
 ---
 
 ## 🚀 Features
 
-- 🎥 Real-time webcam integration
-- 🤖 Emotion classification using CNN
-- 📷 Image capture and display
-- 🧪 Flask backend with prediction API
-- 💻 Simple and clean frontend with emoji output
+- 🎥 Real-time webcam integration  
+- 🤖 Emotion classification using CNN  
+- 📷 Image capture and display  
+- 🧪 Flask backend with prediction API  
+- 💻 Simple and clean frontend with emoji output  
 
 ---
 
 ## 🛠 Tech Stack
 
-| Frontend | Backend | ML/DL Model |
-|----------|---------|-------------|
-| HTML/CSS/JS | Flask (Python) | TensorFlow/Keras |
-| WebRTC     | REST API       | CNN (FER2013)     |
-
----
-
-## 📸 Demo
-
-https://user-images.githubusercontent.com/your-username/demo-emotion.gif  
-*(Add your own demo GIF here)*
+| Frontend        | Backend       | ML/DL Model      |
+|-----------------|---------------|------------------|
+| HTML/CSS/JS     | Flask (Python)| TensorFlow/Keras |
+| WebRTC          | REST API      | CNN (FER2013)    |
 
 ---
 
