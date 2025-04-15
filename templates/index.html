@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        #video {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        #canvas {
+            display: none;
+        }
+        button {
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        #capturedImage {
+            margin-top: 20px;
+            max-width: 300px;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emotion Detection</h1>
+    <video id="video" autoplay></video>
+    <button onclick="captureImage()">Capture</button>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <p id="result"></p>
+    <img id="capturedImage" style="display: none;" alt="Captured Image"/>
+
+    <script>
+        const video = document.getElementById("video");
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; });
+
+        function captureImage() {
+            const canvas = document.getElementById("canvas");
+            const context = canvas.getContext("2d");
+            context.drawImage(video, 0, 0, 300, 300);
+            
+            // Convert image to Base64 and send to Flask
+            const image_data = canvas.toDataURL("image/jpeg");
+
+            // Display the captured image on the page
+            const capturedImage = document.getElementById("capturedImage");
+            capturedImage.src = image_data;
+            capturedImage.style.display = "block";
+            
+            fetch("/predict", {
+                method: "POST",
+                body: JSON.stringify({ image: image_data }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => { 
+                const emotion = data.emotion;
+                const emoji = data.emoji;
+                document.getElementById("result").innerHTML = "Emotion: " + emotion + " " + emoji;
+            });
+        }
+    </script>
+</body>
+</html>
